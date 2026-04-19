@@ -26,9 +26,9 @@
     {
       "name": "todsmith-fly",
       "source": "./plugins/todsmith-fly",
-      "description": "Fly.io runbook for the TodSmith deployment (machines, volumes, secrets, logs). Placeholder — content forthcoming.",
+      "description": "Fly.io runbook for the `tod-smith` deployment — app anatomy, the always-on attachable invariant, persistence layout, Tailscale (userspace) topology, secrets rotation (incl. the VAULT_* reserved-name gotcha and Telegram bot uniqueness across fly + home box), deploy/rollback, and a triage playbook.",
       "category": "deployment",
-      "keywords": ["fly.io", "deployment", "secrets", "volumes"]
+      "keywords": ["fly.io", "deployment", "secrets", "volumes", "tailscale", "tmux", "oauth"]
     },
     {
       "name": "todsmith-sprites-dev",

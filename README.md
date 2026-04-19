@@ -14,8 +14,8 @@ stacks.
 |---|---|---|
 | `todsmith-vault` | **initial** | How agents write to `~/.secondbrain` — `vault-commit.sh`, frontmatter, daily-branch lifecycle, `raw/` immutability. Every agent enables this. |
 | `todsmith-gh` | **initial** | GitHub CLI runbook — PR conventions, auto-review + daily-rollup workflow, ruleset awareness, Actions triage. Includes the `clean-gone` skill. |
-| `todsmith-fly` | *placeholder* | Fly.io runbook (machines, volumes, secrets, logs). |
-| `todsmith-sprites-dev` | **initial** | sprites.dev CLI + API runbook — ephemeral fly-machine workloads. Linux-only; Windows/Git-Bash material dropped from the upstream version. |
+| `todsmith-fly` | **initial** | Fly.io runbook for the `tod-smith` app — anatomy, persistence, Tailscale topology, secrets rotation (incl. `VAULT_*` gotcha + Telegram-poller uniqueness), deploy/rollback, triage. |
+| `todsmith-sprites-dev` | *placeholder* | sprites.dev runbook adapted for TodSmith. |
 
 Follow-on PRs will flesh out the three placeholders.
 
