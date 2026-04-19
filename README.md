@@ -13,7 +13,7 @@ stacks.
 | Plugin | Status | Purpose |
 |---|---|---|
 | `todsmith-vault` | **initial** | How agents write to `~/.secondbrain` — `vault-commit.sh`, frontmatter, daily-branch lifecycle, `raw/` immutability. Every agent enables this. |
-| `todsmith-gh` | *placeholder* | GitHub CLI runbook (PRs, issues, Actions, rulesets). |
+| `todsmith-gh` | **initial** | GitHub CLI runbook — PR conventions, auto-review + daily-rollup workflow, ruleset awareness, Actions triage. Includes the `clean-gone` skill. |
 | `todsmith-fly` | *placeholder* | Fly.io runbook (machines, volumes, secrets, logs). |
 | `todsmith-sprites-dev` | *placeholder* | sprites.dev runbook adapted for TodSmith. |
 

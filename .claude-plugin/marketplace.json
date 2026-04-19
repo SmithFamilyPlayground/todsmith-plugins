@@ -19,9 +19,9 @@
     {
       "name": "todsmith-gh",
       "source": "./plugins/todsmith-gh",
-      "description": "GitHub CLI runbook for TodSmith: PRs, issues, Actions, rulesets. Placeholder — content forthcoming.",
+      "description": "GitHub CLI runbook for TodSmith and the SmithFamilyPlayground org — PR conventions, auto-review + daily-rollup workflow expectations, ruleset awareness, Actions triage. Bundles the `clean-gone` skill for pruning local branches whose remotes are deleted.",
       "category": "reference",
-      "keywords": ["github", "gh-cli", "pull-requests", "actions"]
+      "keywords": ["github", "gh-cli", "pull-requests", "actions", "worktrees", "rulesets"]
     },
     {
       "name": "todsmith-fly",
