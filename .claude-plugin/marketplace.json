@@ -33,9 +33,9 @@
     {
       "name": "todsmith-sprites-dev",
       "source": "./plugins/todsmith-sprites-dev",
-      "description": "sprites.dev runbook adapted for TodSmith conventions. Placeholder — content forthcoming.",
+      "description": "sprites.dev CLI + API runbook for TodSmith — ephemeral fly-machine workloads. Service create/update, file uploads (with the compress-over-~20MB rule), checkpoints, URL auth. Headless-Linux only; Windows/Git-Bash path-mangling material from the upstream spindev version is deliberately out of scope.",
       "category": "deployment",
-      "keywords": ["sprites.dev", "deployment", "fly-machines"]
+      "keywords": ["sprites.dev", "ephemeral", "fly-machines", "rest-api", "checkpoints"]
     }
   ]
 }
