@@ -1,0 +1,41 @@
+{
+  "name": "todsmith-plugins",
+  "owner": {
+    "name": "Smith Family Playground",
+    "url": "https://github.com/SmithFamilyPlayground"
+  },
+  "metadata": {
+    "description": "Claude Code plugin marketplace for the Tod Smith agent team — codifies the SecondBrain vault workflow and TodSmith-native runbooks for gh, fly.io, and sprites.dev.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "todsmith-vault",
+      "source": "./plugins/todsmith-vault",
+      "description": "How agents write to ~/.secondbrain: vault-commit.sh, frontmatter schema, daily-branch lifecycle, raw/ immutability.",
+      "category": "workflow",
+      "keywords": ["secondbrain", "obsidian", "vault", "git-workflow", "daily-branch"]
+    },
+    {
+      "name": "todsmith-gh",
+      "source": "./plugins/todsmith-gh",
+      "description": "GitHub CLI runbook for TodSmith: PRs, issues, Actions, rulesets. Placeholder — content forthcoming.",
+      "category": "reference",
+      "keywords": ["github", "gh-cli", "pull-requests", "actions"]
+    },
+    {
+      "name": "todsmith-fly",
+      "source": "./plugins/todsmith-fly",
+      "description": "Fly.io runbook for the TodSmith deployment (machines, volumes, secrets, logs). Placeholder — content forthcoming.",
+      "category": "deployment",
+      "keywords": ["fly.io", "deployment", "secrets", "volumes"]
+    },
+    {
+      "name": "todsmith-sprites-dev",
+      "source": "./plugins/todsmith-sprites-dev",
+      "description": "sprites.dev runbook adapted for TodSmith conventions. Placeholder — content forthcoming.",
+      "category": "deployment",
+      "keywords": ["sprites.dev", "deployment", "fly-machines"]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+# Editors
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Claude Code local state (if anyone runs claude inside the repo)
+.claude/settings.local.json
+.claude/projects/
+.claude/sessions/
+.claude/cache/
+**/.internal/
+
+# Temporary scratch
+*.tmp
+*.bak
+/tmp/
