@@ -167,6 +167,25 @@ sprite checkpoint list
 sprite restore v1                        # restore to named checkpoint
 ```
 
+## Staging deploy flow
+
+For a full end-to-end recipe (create → upload → mint secrets →
+service PUT → `url update --auth public` → `sprite info` → teardown),
+see the [TodSmith sprites staging deploy
+runbook](https://github.com/SmithFamilyPlayground/TodSmith/blob/main/shared/runbooks/sprites-deploy.md).
+
+This skill captures the individual command shapes. The runbook
+captures the six-step sequence we actually use for deploys like
+`dashboard-staging`, and is the input artifact for the future
+`spindev-deploy` plugin that will port the same workflow into
+claude-web-compatible slash commands.
+
+Teardown, missing from the quick-ref table below:
+
+```bash
+sprite destroy <name> --force   # --force skips the TTY prompt; safe for scripts
+```
+
 ## Quick reference
 
 | Task | Command |
