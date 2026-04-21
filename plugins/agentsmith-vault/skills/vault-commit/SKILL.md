@@ -1,11 +1,11 @@
 ---
 name: vault-commit
-description: Use when any Tod Smith agent needs to write to `~/.secondbrain` — memories, conversation archives, project wiki entries, zettel notes. Codifies the `vault-commit.sh` helper, daily-branch lifecycle, frontmatter schema, and `raw/` immutability rule. Every vault write goes through this skill; `git push origin main` direct is forbidden.
+description: Use when any Smith-family agent needs to write to `~/.secondbrain` — memories, conversation archives, project wiki entries, zettel notes. Codifies the `vault-commit.sh` helper, daily-branch lifecycle, frontmatter schema, and `raw/` immutability rule. Every vault write goes through this skill; `git push origin main` direct is forbidden.
 ---
 
 # vault-commit
 
-The Tod Smith agent team writes to a shared SecondBrain vault at
+The AgentSmith agent family writes to a shared SecondBrain vault at
 `~/.secondbrain`. Writes happen constantly (auto-memories, session
 archives, research notes, project deliverables) so the workflow is
 optimized for safety without friction: per-edit commits to a
@@ -14,10 +14,10 @@ daily-scoped branch, once-a-day rollup to `main`, non-destructive only.
 ## The contract
 
 **Never run `git push origin main` or `git commit` against `main` directly inside the vault.** Every write must go through the `vault-commit.sh` helper located in
-the TodSmith operational workspace:
+the AgentSmith operational workspace:
 
 ```bash
-~/src/tod.smith/shared/scripts/vault-commit.sh "<commit message>"
+~/src/agent.smith/shared/scripts/vault-commit.sh "<commit message>"
 ```
 
 The helper:
@@ -42,7 +42,7 @@ vault PR by hand.
 ```bash
 cd ~/.secondbrain              # optional; helper uses VAULT_PATH env
 TOD_AGENT_NAME="${TOD_AGENT_NAME:-tod}" \
-  ~/src/tod.smith/shared/scripts/vault-commit.sh \
+  ~/src/agent.smith/shared/scripts/vault-commit.sh \
   "research: ADU zoning primer for Placer County"
 ```
 
@@ -159,5 +159,5 @@ re-run `vault-commit.sh`; rollup sees the fixed version.
 
 - `obsidian-markdown`, `obsidian-bases`, `json-canvas`, `defuddle` —
   formatting and ingest skills, always used together with this one.
-- `todsmith-gh` (forthcoming) — when you need to touch the SecondBrain
+- `agentsmith-gh` (forthcoming) — when you need to touch the SecondBrain
   repo metadata (issues, rollup workflow runs, labels).

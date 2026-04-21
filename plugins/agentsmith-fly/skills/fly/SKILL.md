@@ -1,12 +1,12 @@
 ---
 name: fly
-description: Use when a Tod Smith agent touches the `tod-smith` fly.io deployment — deploying, reading logs, reaching the machine, rotating secrets, understanding the persistence layout, triaging failures. TodSmith-specific conventions — the always-on attachable invariant, the userspace-networking Tailscale topology, the SECONDBRAIN_* env prefix (VAULT_* is fly-reserved), and the bot-token uniqueness constraint across fly + home box.
+description: Use when a Smith-family agent touches the `tod-smith` fly.io deployment — deploying, reading logs, reaching the machine, rotating secrets, understanding the persistence layout, triaging failures. AgentSmith-specific conventions — the always-on attachable invariant, the userspace-networking Tailscale topology, the SECONDBRAIN_* env prefix (VAULT_* is fly-reserved), and the bot-token uniqueness constraint across fly + home box.
 ---
 
-# fly (TodSmith)
+# fly (AgentSmith)
 
 Claude Code doesn't have built-in knowledge of `fly` specific to our
-deployment. This skill covers everything TodSmith — the `tod-smith`
+deployment. This skill covers everything AgentSmith — the `tod-smith`
 app's shape, why we built it this way, and the knobs that must not
 change without thinking.
 
@@ -22,7 +22,7 @@ change without thinking.
 | `auto_stop_machines` | `"off"` | Same invariant. Don't turn on. |
 | Volume | `data` (3 GB, encrypted, snapshots enabled, retention 5) | Mounted at `/data`. Holds all state that must persist across deploys. |
 | PID 1 | `tini` | Signal forwarding for the bash script + child processes. |
-| Entrypoint | `fly/entrypoint.sh` in the TodSmith repo | See below. |
+| Entrypoint | `fly/entrypoint.sh` in the AgentSmith repo | See below. |
 
 ## The always-on attachable invariant
 
@@ -40,7 +40,7 @@ The whole operator flow depends on this shape:
 | Path | Symlinked from | What lives here |
 |---|---|---|
 | `/data/secondbrain` | `$HOME/.secondbrain` | The SecondBrain vault clone (on `main`). Git-backed; `vault-commit.sh` writes here. |
-| `/data/src/tod.smith` | `$HOME/src/tod.smith` | The TodSmith repo clone. All agent cwds, shared scripts, the entrypoint script itself. |
+| `/data/src/agent.smith` | `$HOME/src/agent.smith` | The AgentSmith repo clone. All agent cwds, shared scripts, the entrypoint script itself. |
 | `/data/claude` | `$HOME/.claude` | Claude Code state — OAuth creds, plugin marketplaces + cache, per-agent telegram state, session history. |
 | `/data/tailscale` | *(direct)* | `tailscaled.state` — keeps the machine stable across reboots so the tailnet IP is consistent. |
 
@@ -54,10 +54,10 @@ fly --app tod-smith secrets list
 
 | Name | Required | Purpose |
 |---|---|---|
-| `GITHUB_TOKEN` | Yes | Fine-grained PAT for `git pull` / `git push` on both TodSmith + SecondBrain. Scoped read/write Contents + Metadata + PullRequests + Workflows; see `bootstrap/github-pat.sh`. |
+| `GITHUB_TOKEN` | Yes | Fine-grained PAT for `git pull` / `git push` on both AgentSmith + SecondBrain. Scoped read/write Contents + Metadata + PullRequests + Workflows; see `bootstrap/github-pat.sh`. |
 | `TELEGRAM_<AGENT>_BOT_TOKEN` | One per enabled agent | Uppercased agent name. `TELEGRAM_TOD_BOT_TOKEN` for Tod, etc. Entrypoint seeds each into `/data/claude/channels/telegram-<agent>/.env` on boot. |
 | `TS_AUTHKEY` | Optional but recommended | Tailscale auth key. If unset, Tailscale isn't started and the only shell path is `fly ssh console` (limited). With it, `ssh root@tod-smith-fly` from any tailnet device just works. |
-| `FLY_DEPLOY_TOKEN` | Local env only (not a runtime secret) | App-scoped deploy token in `~/src/tod.smith/.env`. Export as `FLY_API_TOKEN` for flyctl. |
+| `FLY_DEPLOY_TOKEN` | Local env only (not a runtime secret) | App-scoped deploy token in `~/src/agent.smith/.env`. Export as `FLY_API_TOKEN` for flyctl. |
 
 **Not a secret**: `ANTHROPIC_API_KEY`. Intentionally absent. Agents authenticate via OAuth (`/login` inside the tmux session), creds persist on `/data/claude/.credentials.json`, survive restarts.
 
@@ -99,7 +99,7 @@ Key facts:
 
 ## Deploying
 
-From `~/src/tod.smith/`:
+From `~/src/agent.smith/`:
 
 ```bash
 # Standard deploy (builds + rolls the machine).
@@ -162,7 +162,7 @@ Entrypoint log lines are timestamped `[YYYY-MM-DDTHH:MM:SSZ]`. Things to look fo
 
 - `launching tmux session '<agent>' in <cwd>` — agent started successfully.
 - `warning: TELEGRAM_<AGENT>_BOT_TOKEN not set` — secret missing for an agent in `TOD_ENABLED_AGENTS`.
-- `warning: /root/src/tod.smith/<agent> missing` — repo clone is missing the agent cwd (PR not merged yet on main?).
+- `warning: /root/src/agent.smith/<agent> missing` — repo clone is missing the agent cwd (PR not merged yet on main?).
 - `tailscale up failed` — check `/var/log/tailscaled.log` via `fly ssh console -C 'cat /var/log/tailscaled.log'`.
 
 ## Machines + volumes
@@ -204,7 +204,7 @@ fly --app tod-smith machine start <id>
 1. `fly logs` — is the container alive? Are there recent entrypoint lines?
 2. `fly ssh console -C "tmux list-sessions"` — is the agent's session there?
 3. `fly ssh console -C "tmux capture-pane -t <agent> -p | tail -40"` — what does the pane show?
-4. `fly ssh console -C 'cd ~/src/tod.smith/<agent> && claude mcp list'` — telegram `✓ Connected`?
+4. `fly ssh console -C 'cd ~/src/agent.smith/<agent> && claude mcp list'` — telegram `✓ Connected`?
 5. If "Failed to connect," see `project_telegram_plugin_gotchas.md` — usually the MCP startup race (resolves in ~60s or after `/reload-plugins`) or a missing `bun` (captured as gotcha #6).
 
 ### Container crash-loops on boot
