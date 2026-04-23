@@ -1,39 +1,39 @@
 {
-  "name": "todsmith-plugins",
+  "name": "agentsmith-plugins",
   "owner": {
     "name": "Smith Family Playground",
     "url": "https://github.com/SmithFamilyPlayground"
   },
   "metadata": {
-    "description": "Claude Code plugin marketplace for the Tod Smith agent team — codifies the SecondBrain vault workflow and TodSmith-native runbooks for gh, fly.io, and sprites.dev.",
+    "description": "Claude Code plugin marketplace for the AgentSmith agent family — codifies the SecondBrain vault workflow and AgentSmith-native runbooks for gh, fly.io, and sprites.dev.",
     "version": "0.1.0"
   },
   "plugins": [
     {
-      "name": "todsmith-vault",
-      "source": "./plugins/todsmith-vault",
+      "name": "agentsmith-vault",
+      "source": "./plugins/agentsmith-vault",
       "description": "How agents write to ~/.secondbrain: vault-commit.sh, frontmatter schema, daily-branch lifecycle, raw/ immutability.",
       "category": "workflow",
       "keywords": ["secondbrain", "obsidian", "vault", "git-workflow", "daily-branch"]
     },
     {
-      "name": "todsmith-gh",
-      "source": "./plugins/todsmith-gh",
-      "description": "GitHub CLI runbook for TodSmith and the SmithFamilyPlayground org — PR conventions, auto-review + daily-rollup workflow expectations, ruleset awareness, Actions triage. Bundles the `clean-gone` skill for pruning local branches whose remotes are deleted.",
+      "name": "agentsmith-gh",
+      "source": "./plugins/agentsmith-gh",
+      "description": "GitHub CLI runbook for AgentSmith and the SmithFamilyPlayground org — PR conventions, auto-review + daily-rollup workflow expectations, ruleset awareness, Actions triage. Bundles the `clean-gone` skill for pruning local branches whose remotes are deleted.",
       "category": "reference",
       "keywords": ["github", "gh-cli", "pull-requests", "actions", "worktrees", "rulesets"]
     },
     {
-      "name": "todsmith-fly",
-      "source": "./plugins/todsmith-fly",
+      "name": "agentsmith-fly",
+      "source": "./plugins/agentsmith-fly",
       "description": "Fly.io runbook for the `tod-smith` deployment — app anatomy, the always-on attachable invariant, persistence layout, Tailscale (userspace) topology, secrets rotation (incl. the VAULT_* reserved-name gotcha and Telegram bot uniqueness across fly + home box), deploy/rollback, and a triage playbook.",
       "category": "deployment",
       "keywords": ["fly.io", "deployment", "secrets", "volumes", "tailscale", "tmux", "oauth"]
     },
     {
-      "name": "todsmith-sprites-dev",
-      "source": "./plugins/todsmith-sprites-dev",
-      "description": "sprites.dev CLI + API runbook for TodSmith — ephemeral fly-machine workloads. Service create/update, file uploads (with the compress-over-~20MB rule), checkpoints, URL auth. Headless-Linux only; Windows/Git-Bash path-mangling material from the upstream spindev version is deliberately out of scope.",
+      "name": "agentsmith-sprites-dev",
+      "source": "./plugins/agentsmith-sprites-dev",
+      "description": "sprites.dev CLI + API runbook for AgentSmith — ephemeral fly-machine workloads. Service create/update, file uploads (with the compress-over-~20MB rule), checkpoints, URL auth. Headless-Linux only; Windows/Git-Bash path-mangling material from the upstream spindev version is deliberately out of scope.",
       "category": "deployment",
       "keywords": ["sprites.dev", "ephemeral", "fly-machines", "rest-api", "checkpoints"]
     }

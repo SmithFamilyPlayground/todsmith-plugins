@@ -1,16 +1,16 @@
 ---
 name: sprites-dev
-description: Use when a Tod Smith agent runs `sprite` CLI commands or calls the sprites.dev API for ephemeral fly-machine workloads — service create/update, file uploads (with the compress-over-~20MB rule), checkpoints, URL auth. Triggers on `sprite exec`, `sprite api`, `sprite console`, `sprite checkpoint`, `sprite url`. TodSmith version: headless-Linux-only; Windows/Git-Bash path-mangling rules are out of scope (we don't run on Windows).
+description: Use when a Smith-family agent runs `sprite` CLI commands or calls the sprites.dev API for ephemeral fly-machine workloads — service create/update, file uploads (with the compress-over-~20MB rule), checkpoints, URL auth. Triggers on `sprite exec`, `sprite api`, `sprite console`, `sprite checkpoint`, `sprite url`. AgentSmith version: headless-Linux-only; Windows/Git-Bash path-mangling rules are out of scope (we don't run on Windows).
 ---
 
-# sprites-dev (TodSmith)
+# sprites-dev (AgentSmith)
 
 `sprites.dev` runs ephemeral fly machines for one-off workloads —
 useful when you need an isolated environment to run a tool, try a
 library, or serve something temporarily without touching the
 `tod-smith` production app.
 
-This skill covers the CLI + API patterns that TodSmith agents need,
+This skill covers the CLI + API patterns that AgentSmith agents need,
 adapted from the upstream `spinlockdevelopment/dev-setup` version
 with the Windows/Git-Bash material stripped. All our hosts (fly + home
 box) run Linux; the `MSYS_NO_PATHCONV`, `C:` drive collision, and
@@ -26,7 +26,7 @@ Git-Bash path-rewrite rules don't apply here.
 | Scratch compute where you don't want `/data` clutter. | Anything that writes to SecondBrain. |
 
 If you're tempted to use sprites for agent workloads, you're probably
-reaching for the wrong tool — use the `todsmith-fly` skill instead.
+reaching for the wrong tool — use the `agentsmith-fly` skill instead.
 
 ## Rules
 
@@ -171,8 +171,8 @@ sprite restore v1                        # restore to named checkpoint
 
 For a full end-to-end recipe (create → upload → mint secrets →
 service PUT → `url update --auth public` → `sprite info` → teardown),
-see the [TodSmith sprites staging deploy
-runbook](https://github.com/SmithFamilyPlayground/TodSmith/blob/main/shared/runbooks/sprites-deploy.md).
+see the [AgentSmith sprites staging deploy
+runbook](https://github.com/SmithFamilyPlayground/AgentSmith/blob/main/shared/runbooks/sprites-deploy.md).
 
 This skill captures the individual command shapes. The runbook
 captures the six-step sequence we actually use for deploys like
@@ -199,7 +199,7 @@ sprite destroy <name> --force   # --force skips the TTY prompt; safe for scripts
 | List sprites | `sprite list` |
 | Current sprite info | `sprite info` |
 
-## TodSmith-specific notes
+## AgentSmith-specific notes
 
 - **Don't run agents on sprites.** Agents need the always-on
   attachable invariant (`min_machines_running=1`, OAuth on persistent
@@ -207,7 +207,7 @@ sprite destroy <name> --force   # --force skips the TTY prompt; safe for scripts
   restart and there's no "stay alive" knob. Use the `tod-smith` fly
   app.
 - **Don't write to SecondBrain from a sprite.** `vault-commit.sh`
-  expects the TodSmith workspace clone and the per-agent git
+  expects the AgentSmith workspace clone and the per-agent git
   identity; sprites don't have either. Produce artifacts on the
   sprite, pull them locally or to the fly app, *then* commit.
 - **Secrets**: don't put long-lived secrets in `env:` on a sprite
@@ -223,7 +223,7 @@ rather than a long rationale.
 
 ## Related
 
-- `todsmith-fly` skill — always the right place for agent workloads
+- `agentsmith-fly` skill — always the right place for agent workloads
   and anything with state.
 - `vault-commit` skill — how SecondBrain writes happen; sprites are
   the wrong layer for this.

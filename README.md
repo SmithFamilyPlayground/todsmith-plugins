@@ -1,9 +1,9 @@
-# todsmith-plugins
+# agentsmith-plugins
 
-Claude Code plugin marketplace for the [Tod Smith](https://github.com/SmithFamilyPlayground/TodSmith)
+Claude Code plugin marketplace for the [AgentSmith](https://github.com/SmithFamilyPlayground/AgentSmith)
 agent team.
 
-Public + MIT licensed so any host that runs TodSmith agents (fly
+Public + MIT licensed so any host that runs AgentSmith agents (fly
 machines, home boxes, future dev boxes) can install without a PAT, and
 so the runbooks can be referenced by other projects with similar
 stacks.
@@ -12,10 +12,10 @@ stacks.
 
 | Plugin | Status | Purpose |
 |---|---|---|
-| `todsmith-vault` | **initial** | How agents write to `~/.secondbrain` — `vault-commit.sh`, frontmatter, daily-branch lifecycle, `raw/` immutability. Every agent enables this. |
-| `todsmith-gh` | **initial** | GitHub CLI runbook — PR conventions, auto-review + daily-rollup workflow, ruleset awareness, Actions triage. Includes the `clean-gone` skill. |
-| `todsmith-fly` | **initial** | Fly.io runbook for the `tod-smith` app — anatomy, persistence, Tailscale topology, secrets rotation (incl. `VAULT_*` gotcha + Telegram-poller uniqueness), deploy/rollback, triage. |
-| `todsmith-sprites-dev` | *placeholder* | sprites.dev runbook adapted for TodSmith. |
+| `agentsmith-vault` | **initial** | How agents write to `~/.secondbrain` — `vault-commit.sh`, frontmatter, daily-branch lifecycle, `raw/` immutability. Every agent enables this. |
+| `agentsmith-gh` | **initial** | GitHub CLI runbook — PR conventions, auto-review + daily-rollup workflow, ruleset awareness, Actions triage. Includes the `clean-gone` skill. |
+| `agentsmith-fly` | **initial** | Fly.io runbook for the `tod-smith` app — anatomy, persistence, Tailscale topology, secrets rotation (incl. `VAULT_*` gotcha + Telegram-poller uniqueness), deploy/rollback, triage. |
+| `agentsmith-sprites-dev` | *placeholder* | sprites.dev runbook adapted for AgentSmith. |
 
 Follow-on PRs will flesh out the three placeholders.
 
@@ -26,13 +26,13 @@ Follow-on PRs will flesh out the three placeholders.
 ```jsonc
 {
   "enabledPlugins": {
-    "todsmith-vault@todsmith-plugins": true
+    "agentsmith-vault@agentsmith-plugins": true
   },
   "extraKnownMarketplaces": {
-    "todsmith-plugins": {
+    "agentsmith-plugins": {
       "source": {
         "source": "github",
-        "repo": "SmithFamilyPlayground/todsmith-plugins"
+        "repo": "SmithFamilyPlayground/agentsmith-plugins"
       }
     }
   }
@@ -42,8 +42,8 @@ Follow-on PRs will flesh out the three placeholders.
 ### Interactive (any cwd)
 
 ```bash
-claude plugin marketplace add SmithFamilyPlayground/todsmith-plugins
-claude plugin install todsmith-vault@todsmith-plugins
+claude plugin marketplace add SmithFamilyPlayground/agentsmith-plugins
+claude plugin install agentsmith-vault@agentsmith-plugins
 ```
 
 ## Conventions
@@ -51,7 +51,7 @@ claude plugin install todsmith-vault@todsmith-plugins
 - **Skills**, not slash commands, as the primary surface. Skills load
   into the model's available-skills list and trigger on intent; slash
   commands are added sparingly for deterministic operator workflows.
-- **TodSmith-specific**. These runbooks assume the TodSmith deployment
+- **AgentSmith-specific**. These runbooks assume the AgentSmith deployment
   (the `tod-smith` fly app, the `~/.secondbrain` vault, the
   `SmithFamilyPlayground` GitHub org, the `daily/YYYY-MM-DD` branch
   flow). If you're running a different stack, fork and adapt.

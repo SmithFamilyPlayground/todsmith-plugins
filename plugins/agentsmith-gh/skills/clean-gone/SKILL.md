@@ -1,6 +1,6 @@
 ---
 name: clean-gone
-description: Use to prune local git branches whose remotes have been deleted (shown as `[gone]` in `git branch -v`). Handles the worktree-before-branch ordering so cleanup works cleanly even when some branches are checked out in linked worktrees. Absorbed from `commit-commands`'s `/clean_gone` and owned by TodSmith so we can evolve it as our worktree usage grows.
+description: Use to prune local git branches whose remotes have been deleted (shown as `[gone]` in `git branch -v`). Handles the worktree-before-branch ordering so cleanup works cleanly even when some branches are checked out in linked worktrees. Absorbed from `commit-commands`'s `/clean_gone` and owned by AgentSmith so we can evolve it as our worktree usage grows.
 ---
 
 # clean-gone

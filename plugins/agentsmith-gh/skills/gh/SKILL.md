@@ -1,14 +1,14 @@
 ---
 name: gh
-description: Use when a Tod Smith agent touches GitHub — creating or reviewing PRs, triaging Actions runs, understanding the org rulesets, navigating the multi-repo layout (TodSmith / SecondBrain / todsmith-plugins). Complements Claude Code's built-in "Creating pull requests" guidance with TodSmith-specific body templates, bot attribution, and the auto-review / daily-rollup workflow expectations.
+description: Use when a Smith-family agent touches GitHub — creating or reviewing PRs, triaging Actions runs, understanding the org rulesets, navigating the multi-repo layout (AgentSmith / SecondBrain / agentsmith-plugins). Complements Claude Code's built-in "Creating pull requests" guidance with AgentSmith-specific body templates, bot attribution, and the auto-review / daily-rollup workflow expectations.
 ---
 
-# gh (TodSmith)
+# gh (AgentSmith)
 
 Claude Code's built-in system prompt already covers the mechanics of
 `gh pr create`, commit messages via HEREDOC, the Summary + Test plan
 structure, and returning the PR URL. **Don't re-derive that here.**
-This skill covers what's specific to TodSmith: our repo layout, our
+This skill covers what's specific to AgentSmith: our repo layout, our
 bot identities, our auto-review + daily-rollup workflows, our org
 ruleset, and the issue/label conventions baked into the tooling.
 
@@ -16,13 +16,13 @@ ruleset, and the issue/label conventions baked into the tooling.
 
 | Repo | Visibility | Branch policy | What lives here |
 |---|---|---|---|
-| `SmithFamilyPlayground/TodSmith` | Private | Feature-branch → PR → squash-merge | Operational workspace, agent cwds, shared scripts, hooks, fly/home-box deploy, docs. |
+| `SmithFamilyPlayground/AgentSmith` | Private | Feature-branch → PR → squash-merge | Operational workspace, agent cwds, shared scripts, hooks, fly/home-box deploy, docs. |
 | `SmithFamilyPlayground/SecondBrain` | Private | Daily-branch (`daily/YYYY-MM-DD`) → auto-rollup PR to main | The vault. Memories, conversations, projects, zettel. **Agents write via `vault-commit.sh`, never directly.** |
-| `SmithFamilyPlayground/todsmith-plugins` | **Public**, MIT | Feature-branch → PR | This marketplace. Skills + plugins for the team. |
+| `SmithFamilyPlayground/agentsmith-plugins` | **Public**, MIT | Feature-branch → PR | This marketplace. Skills + plugins for the team. |
 
 The fine-grained PAT is at `~/.config/tod/secrets/github-pat` (chmod
 600). Scopes and rotation are covered in `bootstrap/github-pat.sh` in
-the TodSmith repo — go there before rotating.
+the AgentSmith repo — go there before rotating.
 
 ## Bot identities
 
@@ -41,7 +41,7 @@ When you open a PR, the commit trailer should include the Claude
 co-author line. This repo's `attribution` setting injects it
 automatically; you don't add it to the HEREDOC.
 
-## PR bodies in TodSmith
+## PR bodies in AgentSmith
 
 Our body template, built on Claude Code's default Summary + Test plan:
 
@@ -74,7 +74,7 @@ Guidelines that hold across the team:
 ## Opening a PR
 
 Use Claude Code's standard HEREDOC pattern from the system prompt.
-TodSmith-specific: match the body template above; no manual
+AgentSmith-specific: match the body template above; no manual
 `Co-Authored-By` line (the `attribution` setting injects it).
 
 ```bash
@@ -108,7 +108,7 @@ gh pr merge <num> --squash --delete-branch   # our default
 **Only squash-merge.** Never merge-commit or rebase-merge. Keeps
 history linear; the squash message is the PR title.
 
-## The auto-review workflow (every TodSmith PR)
+## The auto-review workflow (every AgentSmith PR)
 
 Our `.github/workflows/pr-review.yml` runs on every PR. It's a
 lighter version of the SecondBrain daily-review workflow — checks
@@ -195,7 +195,7 @@ Common failure modes:
 ## Issues + labels
 
 Open an issue only when the work won't be addressed in the current
-session. TodSmith prefers PRs over issues — a PR with a failing test
+session. AgentSmith prefers PRs over issues — a PR with a failing test
 documents the problem better than an issue.
 
 Labels we use (both repos):
@@ -209,7 +209,7 @@ Labels we use (both repos):
 
 - `clean-gone` skill — prune local branches whose remotes are deleted.
   Use together with `gh pr list --state merged`.
-- `todsmith-fly` skill — when CI failures trace back to fly deploy
+- `agentsmith-fly` skill — when CI failures trace back to fly deploy
   config.
 - `vault-commit` skill — **always** the correct entry point for
   SecondBrain writes; never `git push` against main on that repo.
