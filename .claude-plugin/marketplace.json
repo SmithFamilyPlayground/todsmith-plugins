@@ -36,6 +36,13 @@
       "description": "sprites.dev CLI + API runbook for AgentSmith — ephemeral fly-machine workloads. Service create/update, file uploads (with the compress-over-~20MB rule), checkpoints, URL auth. Headless-Linux only; Windows/Git-Bash path-mangling material from the upstream spindev version is deliberately out of scope.",
       "category": "deployment",
       "keywords": ["sprites.dev", "ephemeral", "fly-machines", "rest-api", "checkpoints"]
+    },
+    {
+      "name": "agentsmith-comms",
+      "source": "./plugins/agentsmith-comms",
+      "description": "Lifecycle channel for AgentSmith — push-only Claude Code channel plugin (declares claude/channel only; no tools, no permission relay). Reads NDJSON over a Unix domain socket from a local supervisor process and emits operational nudges (idle_check, context_pressure, health_pulse, external_event) as <channel source=\"agentsmith-comms\"> notifications. Companion to the existing telegram channel — user-facing comms stay on telegram, lifecycle nudges are isolated here.",
+      "category": "channel",
+      "keywords": ["channel", "mcp", "lifecycle", "uds", "push-only", "agentsmith"]
     }
   ]
 }
