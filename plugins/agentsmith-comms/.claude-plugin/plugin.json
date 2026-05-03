@@ -1,0 +1,13 @@
+{
+  "name": "agentsmith-comms",
+  "description": "Lifecycle channel for AgentSmith — push-only MCP channel plugin for operational nudges (idle, context pressure, health pulses) from a local supervisor process. Declares claude/channel only; no tools, no permission relay.",
+  "version": "0.0.1",
+  "keywords": [
+    "channel",
+    "mcp",
+    "lifecycle",
+    "agentsmith",
+    "uds",
+    "push-only"
+  ]
+}

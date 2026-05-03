@@ -20,3 +20,6 @@ Thumbs.db
 *.tmp
 *.bak
 /tmp/
+
+# Bun / node deps — installed at plugin start time per package.json
+**/node_modules/
